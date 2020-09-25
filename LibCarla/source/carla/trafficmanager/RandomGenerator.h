@@ -10,6 +10,10 @@ template<class T = double,
 > class RandomGenerator {
 public:
     RandomGenerator(): mt{std::random_device{}()}, dist(0.0, 100.0) {}
+    RandomGenerator(unsigned int seed): mt{seed} {}
+    void seed(unsigned int seed) {
+        mt.seed(seed);
+    }
     T next() { return dist(mt); }
 private:
     std::mt19937 mt;
