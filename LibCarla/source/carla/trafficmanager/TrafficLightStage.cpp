@@ -131,5 +131,9 @@ void TrafficLightStage::Reset() {
   junction_last_ticket.clear();
 }
 
+void TrafficLightStage::SetRandomSeed(unsigned int seed) {
+  pgen.seed(seed);
+}
+
 } // namespace traffic_manager
 } // namespace carla

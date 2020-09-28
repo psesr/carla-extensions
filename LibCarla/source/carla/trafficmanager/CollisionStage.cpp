@@ -423,5 +423,9 @@ void CollisionStage::DrawBoundary(const LocationVector &boundary) {
   }
 }
 
+void CollisionStage::SetRandomSeed(unsigned int seed) {
+  pgen.seed(seed);
+}
+
 } // namespace traffic_manager
 } // namespace carla

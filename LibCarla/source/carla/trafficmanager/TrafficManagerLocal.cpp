@@ -410,7 +410,10 @@ const BufferMap TrafficManagerLocal::GetBufferMap() const {
 }
 
 void TrafficManagerLocal::InitializeRandomStates(unsigned int seed) {
+  // create different seeds for each stage using some random constants
   localization_stage.SetRandomSeed((seed * 1823 + 973));
+  traffic_light_stage.SetRandomSeed((seed * 627 + 2665));
+  collision_stage.SetRandomSeed((seed * 72 + 9811));
 }
 
 } // namespace traffic_manager
