@@ -42,6 +42,8 @@ public:
   void RemoveActor(const ActorId actor_id) override;
 
   void Reset() override;
+
+  void SetRandomSeed(unsigned int seed);
 };
 
 } // namespace traffic_manager

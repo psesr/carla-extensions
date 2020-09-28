@@ -103,6 +103,8 @@ public:
 
   // Method to flush cache for current update cycle.
   void ClearCycleCache();
+
+  void SetRandomSeed(unsigned int seed);
 };
 
 } // namespace traffic_manager
