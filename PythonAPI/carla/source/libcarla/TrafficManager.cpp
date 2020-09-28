@@ -8,9 +8,28 @@
 #include <memory>
 
 #include "carla/PythonUtil.h"
+#include "carla/trafficmanager/TrafficManager.h"
+
 #include "boost/python/suite/indexing/vector_indexing_suite.hpp"
 
-#include "carla/trafficmanager/TrafficManager.h"
+
+static auto GetWaypointBufferMap(carla::client::TrafficManager &self) {
+  namespace py = boost::python;
+
+  const carla::client::BufferMap buffer_map = self.GetBufferMap();
+
+  py::dict waypoints_map;
+  for (auto iter = buffer_map.begin(); iter != buffer_map.end(); ++iter) {
+    carla::client::Buffer buffer = iter->second;
+    py::list waypoints;
+
+    for (auto waypoint_ptr_iter = buffer.begin(); waypoint_ptr_iter != buffer.end(); ++waypoint_ptr_iter) {
+        waypoints.append((*waypoint_ptr_iter)->GetLocation());
+    }
+    waypoints_map[iter->first] = waypoints;
+  }
+  return waypoints_map;
+}
 
 void export_trafficmanager() {
     namespace cc = carla::client;
@@ -33,5 +52,7 @@ void export_trafficmanager() {
       .def("set_percentage_keep_right_rule", &carla::traffic_manager::TrafficManager::SetKeepRightPercentage)
       .def("set_synchronous_mode", &carla::traffic_manager::TrafficManager::SetSynchronousMode)
       .def("set_hybrid_physics_mode", &carla::traffic_manager::TrafficManager::SetHybridPhysicsMode)
-      .def("set_hybrid_physics_radius", &carla::traffic_manager::TrafficManager::SetHybridPhysicsRadius);
+      .def("set_hybrid_physics_radius", &carla::traffic_manager::TrafficManager::SetHybridPhysicsRadius)
+      .def("get_waypoint_buffer_map", &GetWaypointBufferMap)
+      .def("initialize_random_states", &carla::traffic_manager::TrafficManager::InitializeRandomStates);
 }

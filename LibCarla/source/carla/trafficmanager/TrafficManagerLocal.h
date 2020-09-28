@@ -214,6 +214,12 @@ public:
 
   /// Method to set hybrid physics radius.
   void SetHybridPhysicsRadius(const float radius);
+
+  /// Get waypoint buffer map from the localization stage.
+  const BufferMap GetBufferMap() const;
+
+  /// Initialize random states in order to ensure reproducibility;
+  void InitializeRandomStates(unsigned int seed);
 };
 
 } // namespace traffic_manager

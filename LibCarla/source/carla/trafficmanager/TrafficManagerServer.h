@@ -178,6 +178,10 @@ public:
         return tm->SynchronousTick();
       });
 
+      server->bind("get_routes", [=]() -> std::vector<int> {
+        return {4, 1, 4};
+      });
+
       /// Method to reset all traffic lights.
       server->bind("reset_all_traffic_lights", [=]() {
         tm->ResetAllTrafficLights();

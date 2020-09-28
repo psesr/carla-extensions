@@ -9,6 +9,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <vector>
+#include <exception>
 
 #include "carla/client/Actor.h"
 #include "carla/client/detail/EpisodeProxy.h"
@@ -25,6 +26,14 @@ using ActorPtr = carla::SharedPtr<carla::client::Actor>;
 class TrafficManagerRemote : public TrafficManagerBase {
 
 public:
+  // todo: has to be implented. but where is it used?
+  const BufferMap GetBufferMap() const {
+    throw std::logic_error{"Method not implemented."};
+  }
+
+  void InitializeRandomStates(unsigned int seed) {
+    throw std::logic_error{"Method not implemented."};
+  }
 
   /// To start the TrafficManager.
   void Start();

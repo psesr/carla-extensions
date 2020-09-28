@@ -403,5 +403,9 @@ void LocalizationStage::DrawBuffer(Buffer &buffer) {
   }
 }
 
+void LocalizationStage::SetRandomSeed(unsigned int seed) {
+  pgen.seed(seed);
+}
+
 } // namespace traffic_manager
 } // namespace carla

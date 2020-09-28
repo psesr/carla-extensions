@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "carla/client/Actor.h"
+#include "carla/trafficmanager/DataStructures.h"
 
 namespace carla {
 namespace traffic_manager {
@@ -19,6 +20,12 @@ using ActorPtr = carla::SharedPtr<carla::client::Actor>;
 class TrafficManagerBase {
 
 public:
+  // Get waypoint buffer map from the localization stage.
+  virtual const BufferMap GetBufferMap() const = 0;
+
+  // Initialize random generators in the traffic manager in order to ensure reproducibility.
+  virtual void InitializeRandomStates(unsigned int seed) = 0;
+
   /// To start the traffic manager.
   virtual void Start() = 0;
 

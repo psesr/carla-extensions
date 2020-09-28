@@ -9,6 +9,7 @@
 #include <map>
 #include <mutex>
 #include <vector>
+#include <string>
 
 #include "carla/client/Actor.h"
 #include "carla/trafficmanager/Constants.h"
@@ -45,6 +46,29 @@ public:
   static void Release();
 
   static void Reset();
+
+  BufferMap GetBufferMap() {
+    TrafficManagerBase* tm_ptr = GetTM(_port);
+    if(tm_ptr != nullptr){
+      return tm_ptr->GetBufferMap();
+    }
+    return BufferMap();
+  }
+
+  void InitializeRandomStates(unsigned int seed) {
+    TrafficManagerBase* tm_ptr = GetTM(_port);
+    if(tm_ptr != nullptr){
+      return tm_ptr->InitializeRandomStates(seed);
+    }
+  }
+
+  int getWaypointBuffer() {
+    TrafficManagerBase* tm_ptr = GetTM(_port);
+    if(tm_ptr != nullptr){
+      return 1;
+    } 
+    return -1;
+  }
 
   static void Tick();
 

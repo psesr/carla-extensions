@@ -405,5 +405,13 @@ std::vector<ActorId> TrafficManagerLocal::GetRegisteredVehiclesIDs() {
   return registered_vehicles.GetIDList();
 }
 
+const BufferMap TrafficManagerLocal::GetBufferMap() const {
+  return buffer_map;
+}
+
+void TrafficManagerLocal::InitializeRandomStates(unsigned int seed) {
+  localization_stage.SetRandomSeed((seed * 1823 + 973));
+}
+
 } // namespace traffic_manager
 } // namespace carla
