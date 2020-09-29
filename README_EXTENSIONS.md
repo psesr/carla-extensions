@@ -50,6 +50,17 @@ Fix:
     - There is probably three of them `boost-1.72.0-c7-source`, `boost-1.72.0-c7-install` and an archive file
 - Source: [https://github.com/carla-simulator/carla/issues/2526](https://github.com/carla-simulator/carla/issues/2526) 
 
+#### make package errors
+
+##### AutomationTool was unable to run successfully.
+
+If content files are missing, i.e. if something:
+
+System.IO.DirectoryNotFoundException: Could not find a part of the path '.../Unreal/CarlaUE4/Content/Carla/Maps/OpenDrive'.
+
+Fix:
+
+- Re-download content: 'sh Update.sh'
 
 ## Simulator Issues
 
